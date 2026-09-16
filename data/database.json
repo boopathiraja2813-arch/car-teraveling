@@ -7,6 +7,62 @@
       "displayName": "Boopathi"
     }
   ],
-  "trips": [],
+  "trips": [
+    {
+      "id": "1b922a08-4a7b-401b-94b3-62466e5e877a",
+      "createdAt": "2026-09-16T08:16:24.278Z",
+      "from": "A",
+      "to": "B",
+      "originalFrom": "A",
+      "originalTo": "B",
+      "returnTrip": true,
+      "distance": 0,
+      "distanceMeters": 0,
+      "outboundDistance": 0,
+      "outboundDistanceMeters": 0,
+      "returnDistance": 0,
+      "returnDistanceMeters": 0,
+      "waitingSeconds": 0,
+      "travelSeconds": 0,
+      "rate": 20,
+      "route": [
+        "A",
+        "B",
+        "A"
+      ],
+      "returnCount": 1,
+      "travelCharge": 0,
+      "waitingCharge": 0,
+      "calculatedCost": 0,
+      "totalCost": 0
+    },
+    {
+      "id": "9cb9bf36-fc32-4d4a-9a9a-e18eda2262a8",
+      "createdAt": "2026-09-16T08:16:24.266Z",
+      "from": "11.311411,77.500832",
+      "to": "erode",
+      "originalFrom": "11.311411,77.500832",
+      "originalTo": "erode",
+      "returnTrip": false,
+      "distance": 0,
+      "distanceMeters": 0,
+      "outboundDistance": 0,
+      "outboundDistanceMeters": 0,
+      "returnDistance": 0,
+      "returnDistanceMeters": 0,
+      "waitingSeconds": 0,
+      "travelSeconds": 189,
+      "rate": 20,
+      "route": [
+        "11.311411,77.500832",
+        "erode"
+      ],
+      "returnCount": 0,
+      "travelCharge": 0,
+      "waitingCharge": 0,
+      "calculatedCost": 0,
+      "totalCost": 0
+    }
+  ],
   "activeTrip": null
 }
