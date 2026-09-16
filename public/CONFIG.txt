@@ -1,0 +1,5 @@
+Google Maps live-map setup:
+1. Copy .env.example to .env.
+2. Put your Google Maps JavaScript API key in GOOGLE_MAPS_API_KEY if you want the embedded Google road map.
+3. The website still provides the Open Google Map button without an API key.
+4. GPS tracking requires HTTPS in production (localhost is allowed during local testing).

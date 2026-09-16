@@ -1,0 +1,12 @@
+{
+  "admins": [
+    {
+      "id": "admin-1",
+      "username": "boopathi_183",
+      "passwordHash": "$2b$12$AiSgIlPtZqdN6d3jbdWKbusiAhp.2aGXvfsNAVN1wYkQKEeGUivPS",
+      "displayName": "Boopathi"
+    }
+  ],
+  "trips": [],
+  "activeTrip": null
+}
