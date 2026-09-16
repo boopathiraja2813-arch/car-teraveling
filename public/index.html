@@ -18,7 +18,8 @@
 </header>
 <main class="mobile-shell">
 <h1 class="page-title">Driver Panel</h1>
-<div class="field-row"><input id="fromInput" placeholder="Getting current GPS location..." autocomplete="off" readonly aria-label="Current GPS location"></div>
+<div class="field-row"><input id="fromInput" placeholder="From: Current Location" autocomplete="off" readonly aria-label="Current GPS location"></div>
+<button id="locateBtn" class="location-btn" type="button">Use Current Location</button>
 <div class="field-row"><input id="toInput" placeholder="To: Destination" autocomplete="off"><button id="searchDestinationBtn" class="mini-action" title="Search destination">⌕</button><button id="micBtn" class="mini-action mic" title="Speak destination" aria-label="Voice input">🎙</button></div>
 <button id="startTripBtn" class="primary-btn green">Start Trip</button>
 <section class="trip-metrics card"><div class="metrics-grid"><div><span>Time Elapsed</span><strong id="travelTime">00:00:00</strong></div><div><span>Distance</span><strong id="distanceValue">0 km</strong></div></div></section>

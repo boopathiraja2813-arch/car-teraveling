@@ -36,27 +36,29 @@ function openMaps(){
  window.open(`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(from)}&destination=${encodeURIComponent(to)}&travelmode=driving`,'_blank');
 }
 async function locate(){
+ const btn=$('locateBtn');
  if(!navigator.geolocation)return toast('GPS is not supported on this device.');
+ btn.disabled=true;btn.textContent='Getting current GPS location...';
  try{
   const p=await new Promise((resolve,reject)=>navigator.geolocation.getCurrentPosition(resolve,reject,{
    enableHighAccuracy:true,timeout:20000,maximumAge:0
   }));
-  const {latitude,longitude,accuracy}=p.coords;
+    const {latitude,longitude}=p.coords;
   $('fromInput').value=`${latitude.toFixed(6)}, ${longitude.toFixed(6)}`;
   updateDriverMap(latitude,longitude);
-  toast(`Current GPS location added${accuracy?` (±${Math.round(accuracy)}m)`:''}.`);
+    toast('Current GPS location added.');
  }catch(e){
   $('fromInput').value='';
-  toast('Location permission denied or GPS unavailable.');
+    toast(e.code===1?'Location permission denied. Please allow location access and try again.':'Unable to get current location. Please try again.');
+ }finally{
+    btn.disabled=false;btn.textContent='Use Current Location';
  }
 }
 function voice(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return toast('Voice input needs Chrome or Edge.');if(recognition){recognition.stop();return}recognition=new SR();recognition.lang='ta-IN';recognition.interimResults=true;recognition.continuous=false;$('micBtn').classList.add('recording');recognition.onresult=e=>$('toInput').value=Array.from(e.results).map(r=>r[0].transcript).join('');recognition.onerror=()=>toast('Voice input stopped.');recognition.onend=()=>{recognition=null;$('micBtn').classList.remove('recording')};recognition.start();toast('Speak destination in Tamil or English.')}
 function initMap(){if(!window.google?.maps)return;const center={lat:11.0168,lng:76.9558};driverMap=new google.maps.Map($('driverMap'),{center,zoom:12,mapTypeId:'roadmap',streetViewControl:false,mapTypeControl:false,fullscreenControl:true})}
 function updateDriverMap(lat,lng){if(!window.google?.maps)return;const p={lat:Number(lat),lng:Number(lng)};if(!driverMap)initMap();if(!driverMap)return;if(!driverMarker)driverMarker=new google.maps.Marker({map:driverMap,position:p,title:'Current location'});else driverMarker.setPosition(p);driverMap.setCenter(p);driverMap.setZoom(16)}
 
-document.querySelectorAll('.nav-home').forEach(b=>b.onclick=()=>showPage('driver'));document.querySelectorAll('.nav-history').forEach(b=>b.onclick=()=>showPage('history'));$('startTripBtn').onclick=startTrip;$('waitingBtn').onclick=toggleWaiting;$('endTripBtn').onclick=endTrip;$('micBtn').onclick=voice;$('openMapsBtn').onclick=openMaps;$('searchDestinationBtn').onclick=()=>{const q=$('toInput').value.trim();if(q)window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`,'_blank');else toast('Type a destination first.')};$('rateInput').oninput=e=>trip.rate=Math.max(1,Number(e.target.value)||1);$('rateUp').onclick=()=>{trip.rate++;updateUI()};$('rateDown').onclick=()=>{trip.rate=Math.max(1,trip.rate-1);updateUI()};$('historySearch').oninput=loadHistory;$('filterToggle').onclick=()=>$('filterChips').classList.toggle('hidden');document.querySelectorAll('.filter-chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filter-chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');loadHistory()});$('historyList').onclick=e=>{const b=e.target.closest('[data-delete]');if(b)deleteTrip(b.dataset.delete)};$('closeSummary').onclick=closeSummary;$('summaryDone').onclick=closeSummary;$('summaryModal').querySelector('.modal-backdrop').onclick=closeSummary;$('rateEye').onclick=()=>{const i=$('rateInput'),show=i.type==='password';i.type=show?'text':'password';$('rateEye').textContent=show?'◉':'◌';$('rateEye').title=show?'Hide rate':'Show rate';$('rateEye').setAttribute('aria-label',show?'Hide rate':'Show rate')};
+document.querySelectorAll('.nav-home').forEach(b=>b.onclick=()=>showPage('driver'));document.querySelectorAll('.nav-history').forEach(b=>b.onclick=()=>showPage('history'));$('startTripBtn').onclick=startTrip;$('waitingBtn').onclick=toggleWaiting;$('endTripBtn').onclick=endTrip;$('locateBtn').onclick=locate;$('micBtn').onclick=voice;$('openMapsBtn').onclick=openMaps;$('searchDestinationBtn').onclick=()=>{const q=$('toInput').value.trim();if(q)window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`,'_blank');else toast('Type a destination first.')};$('rateInput').oninput=e=>trip.rate=Math.max(1,Number(e.target.value)||1);$('rateUp').onclick=()=>{trip.rate++;updateUI()};$('rateDown').onclick=()=>{trip.rate=Math.max(1,trip.rate-1);updateUI()};$('historySearch').oninput=loadHistory;$('filterToggle').onclick=()=>$('filterChips').classList.toggle('hidden');document.querySelectorAll('.filter-chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filter-chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');loadHistory()});$('historyList').onclick=e=>{const b=e.target.closest('[data-delete]');if(b)deleteTrip(b.dataset.delete)};$('closeSummary').onclick=closeSummary;$('summaryDone').onclick=closeSummary;$('summaryModal').querySelector('.modal-backdrop').onclick=closeSummary;$('rateEye').onclick=()=>{const i=$('rateInput'),show=i.type==='password';i.type=show?'text':'password';$('rateEye').textContent=show?'◉':'◌';$('rateEye').title=show?'Hide rate':'Show rate';$('rateEye').setAttribute('aria-label',show?'Hide rate':'Show rate')};
 restoreActive();updateUI();
 window.initDriveTrackMap=initMap;
 })();
-
-window.addEventListener('load',()=>{ setTimeout(locate,150); });

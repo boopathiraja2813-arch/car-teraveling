@@ -32,6 +32,9 @@ button{cursor:pointer}
 .page-title{text-align:center;margin:0 0 18px;font-size:28px}
 .field-row{display:flex;align-items:center;min-height:65px;border:2px solid #b9c1c5;border-radius:12px;background:#fff;margin:12px 0;overflow:hidden;box-shadow:0 2px 6px #00000008}
 .field-row input{border:0;outline:0;min-width:0;flex:1;padding:17px 20px;font-size:20px;color:var(--ink)}
+.location-btn{width:100%;min-height:52px;margin:-4px 0 12px;border:2px solid var(--teal);border-radius:10px;background:#e8f5f5;color:var(--teal-dark);font-weight:700;font-size:17px;transition:.2s filter,.2s transform}
+.location-btn:hover{filter:brightness(.98);transform:translateY(-1px)}
+.location-btn:disabled{opacity:.6;cursor:wait;transform:none}
 .field-action{border:0;background:transparent;color:#4f5c65;display:flex;gap:7px;align-items:center;padding:7px 15px;font-size:15px;line-height:15px}
 .pin{font-size:31px}
 .mini-action{width:48px;height:48px;border:0;background:transparent;color:#263640;font-size:30px}
@@ -152,7 +155,6 @@ button{cursor:pointer}
 
 /* Full-stack additions */
 #mapPreview{cursor:pointer}
-.map-card:after{content:"Double-click map preview to simulate 1 km movement when testing";position:absolute;top:9px;right:10px;background:#ffffffdc;color:#53626a;padding:5px 8px;border-radius:7px;font-size:10px}
 .status-chip{font-weight:700}
 
 .rate-control{position:relative}
