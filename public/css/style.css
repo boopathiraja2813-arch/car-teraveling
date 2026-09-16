@@ -172,3 +172,4 @@ button{cursor:pointer}
 .summary-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 .summary-actions .primary-btn{min-height:56px;font-size:16px}
 @media(max-width:430px){.summary-actions{grid-template-columns:1fr}.summary-actions .primary-btn{min-height:50px}}
+.login-error{margin-top:14px;padding:10px 12px;border-radius:9px;background:#fdecec;color:#b9302a;border:1px solid #f0b3b1;text-align:center;font-size:14px}
