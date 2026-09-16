@@ -32,4 +32,4 @@ app.delete('/api/trips/:id',(req,res)=>{const db=readDB(),n=db.trips.length;db.t
 app.get('/api/admin/dashboard',auth,(req,res)=>{const t=liveTrip(readDB().activeTrip),active=t?[t]:[];res.json({activeTrips:active,pendingPayments:active.reduce((s,x)=>s+x.currentCost,0),fleet:1})});
 app.get('/api/health',(req,res)=>res.json({ok:true,service:'DriveTrack API',time:new Date().toISOString()}));
 app.get('{*splat}',(req,res)=>{if(req.path.startsWith('/api/'))return res.status(404).json({message:'API route not found.'});let html=fs.readFileSync(path.join(__dirname,'public','index.html'),'utf8');const key=process.env.GOOGLE_MAPS_API_KEY||'';if(key)html=html.replace('<script src="js/app.js"></script>',`<script src="https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&callback=initDriveTrackMap" async defer></script><script src="js/app.js"></script>`);res.send(html)});
-app.listen(PORT,()=>console.log(`DriveTrack running at http://localhost:${PORT}`));
+app.listen(PORT,'0.0.0.0',()=>console.log(`DriveTrack running on port ${PORT}`));
