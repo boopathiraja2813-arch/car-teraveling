@@ -169,6 +169,6 @@ button{cursor:pointer}
 .payment-adjust small{display:block;color:#718089;margin-top:6px;font-size:12px}
 .final-row{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding:12px;border-radius:10px;background:#edf7f3}
 .final-row strong{font-size:22px;color:#11825e}
-.summary-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
+.summary-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 .summary-actions .primary-btn{min-height:56px;font-size:16px}
-@media(max-width:430px){.summary-actions{grid-template-columns:1fr}.summary-actions .primary-btn,.summary-actions .outline-btn{min-height:50px}}
+@media(max-width:430px){.summary-actions{grid-template-columns:1fr}.summary-actions .primary-btn{min-height:50px}}
